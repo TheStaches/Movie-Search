@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchContainer from './containers/Search/SearchContainer';
-import DetailContainer from './containers/Detail/DetailContainer';
+import Search from './containers/Search/';
+import Detail from './containers/Detail/';
 
 import {
   HashRouter as Router,
@@ -14,8 +14,8 @@ export default class App extends Component {
     return (
       <Router>
         <div className='container'>
-          <Route exact path='/' component={ SearchContainer } />
-          <Route exact path='/movie/:id' component={ DetailContainer } />
+          <Route exact path='/' component={ Search } />
+          <Route exact path='/movie/:id' component={ Detail } />
         </div>
       </Router>
     );
