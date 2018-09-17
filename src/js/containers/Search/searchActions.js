@@ -13,9 +13,28 @@ export function searchMovie(movieInput) {
   return {
     type: 'SEARCH_MOVIE',
     payload: axios.get(`http://www.omdbapi.com/?s=${movieInput}&apikey=8730e0e`)
-    // {
-    //   searchQuery: axios.get(`http://www.omdbapi.com/?s=${movieInput}&apikey=8730e0e`),
-    //   titleQuery: axios.get(`http://www.omdbapi.com/?t=${movieInput}&apikey=8730e0e`)
-    // }
+      .then(response => {
+        let imdbQueries = response.data.Search.map((item) => {
+          return axios.get(`http://www.omdbapi.com/?i=${item.imdbID}&apikey=8730e0e`)
+        });
+        return axios.all(imdbQueries).then(res => {
+          const boundQuery = response.data.Search.map((item, index) => {
+            return {
+              ...item,
+              ...res[index].data
+            }
+          })
+          return boundQuery;
+        });
+        
+      })
+  }
+}
+
+export function buttonSearch(movieId) {
+  return {
+    type: 'BUTTON_SEARCH_MOVIE',
+    payload: axios.get(`http://www.omdbapi.com/?t=${movieId}&apikey=8730e0e`)
+
   }
 }

@@ -1,6 +1,7 @@
 const defaultState = {
   movieInput: '',
-  movies: []
+  searchQuery: [],
+  titleQuery: {}
 }
 
 export default function searchReducer (state = defaultState, action) {
@@ -15,11 +16,25 @@ export default function searchReducer (state = defaultState, action) {
     }
 
     case 'SEARCH_MOVIE_FULFILLED': {
-      console.log(payload)
+      console.log('search_movie',payload)
       return {
         ...state,
-        movies: payload.data.Search
+        searchQuery: payload,
       };
+    }
+
+    case 'SEARCH_MOVIE_REJECTED': {
+      return state
+    }
+
+    case 'BUTTON_SEARCH_MOVIE_FULFILLED': {
+      console.log(payload)
+      return {
+      }
+    }
+
+    case 'BUTTON_SEARCH_MOVIE_REJECTED': {
+      return state
     }
 
     default: {

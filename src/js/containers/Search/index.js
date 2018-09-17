@@ -4,7 +4,9 @@ import Search from './Search';
 function mapStoreToProps(store) {
   return {
     movieInput: store.search.movieInput,
-    movies: store.search.movies
+    searchQuery: store.search.searchQuery,
+    titleQuery: store.search.titleQuery
+
   };
 }
 

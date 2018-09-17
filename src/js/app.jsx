@@ -15,7 +15,7 @@ export default class App extends Component {
       <Router>
         <div className='container'>
           <Route exact path='/' component={ Search } />
-          <Route exact path='/movie/:id' component={ Detail } />
+          <Route path='/movie/:id' component={ Detail } />
         </div>
       </Router>
     );

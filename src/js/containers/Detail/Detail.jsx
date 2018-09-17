@@ -6,6 +6,7 @@ class MovieDetailContainer extends React.Component {
   }
 
   render() {
+    const {titleQuery} = this.props;
     return (
       <div className='movieDetail'>
         

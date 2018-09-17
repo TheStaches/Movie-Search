@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 
 import {
   updateSearchInput,
-  searchMovie
+  searchMovie,
+  buttonSearch
 } from './searchActions'
 
 class MovieSearchContainer extends React.Component {
@@ -10,6 +13,7 @@ class MovieSearchContainer extends React.Component {
     super(props);
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleSearchMovie = this.handleSearchMovie.bind(this);
+    this.handleButtonSearch = this.handleButtonSearch.bind(this);
   }
 
   handleSearchInput(event) {
@@ -26,8 +30,14 @@ class MovieSearchContainer extends React.Component {
     }
   }
 
+  handleButtonSearch(event) {
+  const {dispatch} = this.props;
+  const {value} = event.target;
+  dispatch(buttonSearch(value));
+  }
+
   render() {
-    const { movieInput, movies } = this.props
+    const { movieInput, searchQuery } = this.props
     return (
       <div className='movieSearch'>
         
@@ -35,6 +45,7 @@ class MovieSearchContainer extends React.Component {
 
         <div className='input-group'>
           <input type='text' className='form-control'
+          autoFocus
           value={ movieInput } 
           onChange={ this.handleSearchInput }
           onKeyDown={ this.handleSearchMovie } />
@@ -50,8 +61,8 @@ class MovieSearchContainer extends React.Component {
         </div>
 
         {
-          (movies) ?
-            movies.map((movie, index) => {
+          (searchQuery) ?
+            searchQuery.map((movie, index) => {
               return (
                 <div className='row border' key={ index }>
                   <div className='col-3'>
@@ -61,41 +72,17 @@ class MovieSearchContainer extends React.Component {
                     <h2>{ movie.Title }</h2>
                     <p>{ movie.Year }</p>
                     <hr />
-                    <p>'plot'</p>
-                    <button className='btn btn-primary'>More Information</button>
+                    <p>{ movie.Plot }</p>
+                    <button 
+                      onClick={this.handleButtonSearch}
+                      className='btn btn-primary'>
+                        <Link to={`/movie/${movie.imdbID}`}>More Information</Link>
+                    </button>
                   </div>
                 </div>
               );
             }) : <h1>Sorry No Results Found.</h1>
         }
-
-
-        {/* <div className='row border'>
-          <div className='col-3'>
-          <img src='https://m.media-amazon.com/images/M/MV5BZmUwNGU2ZmItMmRiNC00MjhlLTg5YWUtODMyNzkxODYzMmZlXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'></img>
-          </div>
-          <div className='col-9'>
-            <h2>'Movie Title'</h2>
-            <p>'release_year'</p>
-            <hr />
-            <p>'plot'</p>
-            <button className='btn btn-primary'>More Information</button>
-          </div>
-        </div>
-
-        <div className='row border'>
-          <div className='col-3'>
-          <img src='https://m.media-amazon.com/images/M/MV5BZmUwNGU2ZmItMmRiNC00MjhlLTg5YWUtODMyNzkxODYzMmZlXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'></img>
-          </div>
-          <div className='col-9'>
-            <h2>'Movie Title'</h2>
-            <p>'release_year'</p>
-            <hr />
-            <p>'plot'</p>
-            <button className='btn btn-primary'>More Information</button>
-          </div>
-        </div> */}
-
       </div>
     )
   }
