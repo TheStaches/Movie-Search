@@ -1,5 +1,3 @@
-// const API = `http://www.omdbapi.com/?t=${movieTitle}apikey=8730e0e&`
-
 import axios from 'axios';
 
 export function updateSearchInput(movieInput) {
@@ -28,13 +26,5 @@ export function searchMovie(movieInput) {
         });
         
       })
-  }
-}
-
-export function buttonSearch(movieId) {
-  return {
-    type: 'BUTTON_SEARCH_MOVIE',
-    payload: axios.get(`http://www.omdbapi.com/?t=${movieId}&apikey=8730e0e`)
-
   }
 }

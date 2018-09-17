@@ -11,9 +11,10 @@ import {
 class MovieSearchContainer extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleSearchMovie = this.handleSearchMovie.bind(this);
-    this.handleButtonSearch = this.handleButtonSearch.bind(this);
+    // this.handleButtonSearch = this.handleButtonSearch.bind(this);
   }
 
   handleSearchInput(event) {
@@ -30,11 +31,13 @@ class MovieSearchContainer extends React.Component {
     }
   }
 
-  handleButtonSearch(event) {
-  const {dispatch} = this.props;
-  const {value} = event.target;
-  dispatch(buttonSearch(value));
-  }
+  // handleButtonSearch(event) {
+  //   console.log('.target', event.target)
+  //   console.log('.value', event.target.value)
+  // const {dispatch} = this.props;
+  // const {value} = event.target;
+  // dispatch(buttonSearch(value));
+  // }
 
   render() {
     const { movieInput, searchQuery } = this.props
@@ -73,11 +76,13 @@ class MovieSearchContainer extends React.Component {
                     <p>{ movie.Year }</p>
                     <hr />
                     <p>{ movie.Plot }</p>
-                    <button 
-                      onClick={this.handleButtonSearch}
-                      className='btn btn-primary'>
-                        <Link to={`/movie/${movie.imdbID}`}>More Information</Link>
-                    </button>
+                    <Link 
+                    to={`/movie/${movie.imdbID}`}
+                    className='btn btn-primary'
+                    key={ index }
+                    >
+                    More Information
+                    </Link>
                   </div>
                 </div>
               );

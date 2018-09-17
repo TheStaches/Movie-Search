@@ -16,7 +16,6 @@ export default function searchReducer (state = defaultState, action) {
     }
 
     case 'SEARCH_MOVIE_FULFILLED': {
-      console.log('search_movie',payload)
       return {
         ...state,
         searchQuery: payload,
@@ -28,8 +27,9 @@ export default function searchReducer (state = defaultState, action) {
     }
 
     case 'BUTTON_SEARCH_MOVIE_FULFILLED': {
-      console.log(payload)
       return {
+        ...state,
+        movieInfo: payload,
       }
     }
 
