@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, '/../dist')));
 
 app.listen(8888);
 
-const url = 'http://localhost:8888';
+const url = process.env.PORT;
 
 
 describe('page components', () => {
