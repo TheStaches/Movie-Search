@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 import {
   updateSearchInput,
   searchMovie,
-  buttonSearch
-} from './searchActions'
+} from './searchActions';
 
 class MovieSearchContainer extends React.Component {
   constructor(props) {
@@ -31,34 +30,27 @@ class MovieSearchContainer extends React.Component {
     }
   }
 
-  // handleButtonSearch(event) {
-  //   console.log('.target', event.target)
-  //   console.log('.value', event.target.value)
-  // const {dispatch} = this.props;
-  // const {value} = event.target;
-  // dispatch(buttonSearch(value));
-  // }
-
   render() {
-    const { movieInput, searchQuery } = this.props
+    const { movieInput, searchQuery } = this.props;
     return (
       <div className='movieSearch'>
-        
-        <h1>Movie Finder</h1>
-
         <div className='input-group'>
-          <input type='text' className='form-control'
-          autoFocus
-          value={ movieInput } 
-          onChange={ this.handleSearchInput }
-          onKeyDown={ this.handleSearchMovie } />
-          
-          <div className='input-group-append'>
-            <button 
-            className='btn btn-outline-dark' 
-            value='button'
-            onClick={ this.handleSearchMovie }
+          <input
+            type='text'
+            className='form-control'
+            name='searchInput'
+            autoFocus
+            value={ movieInput }
+            onChange={ this.handleSearchInput }
             onKeyDown={ this.handleSearchMovie }
+          />
+          <div className='input-group-append'>
+            <button
+              className='btn btn-outline-dark'
+              id='search'
+              value='button'
+              onClick={ this.handleSearchMovie }
+              onKeyDown={ this.handleSearchMovie }
             >Go!</button>
           </div>
         </div>
@@ -69,17 +61,16 @@ class MovieSearchContainer extends React.Component {
               return (
                 <div className='row border' key={ index }>
                   <div className='col-3'>
-                    <img src={movie.Poster}></img>
+                    <img alt='Poster' src={ movie.Poster } />
                   </div>
                   <div className='col-9'>
                     <h2>{ movie.Title }</h2>
                     <p>{ movie.Year }</p>
                     <hr />
                     <p>{ movie.Plot }</p>
-                    <Link 
-                    to={`/movie/${movie.imdbID}`}
-                    className='btn btn-primary'
-                    key={ index }
+                    <Link
+                      to={ `/movie/${movie.imdbID}` }
+                      className='btn btn-primary moreInfo'
                     >
                     More Information
                     </Link>
@@ -89,7 +80,7 @@ class MovieSearchContainer extends React.Component {
             }) : <h1>Sorry No Results Found.</h1>
         }
       </div>
-    )
+    );
   }
 }
 

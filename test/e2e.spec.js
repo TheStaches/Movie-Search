@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const Nightmare = require('nightmare');
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const axios = require('axios');
 
 let nightmare;
@@ -24,12 +24,22 @@ describe('express', () => {
   it('should have the correct page title', () =>
     nightmare
       .goto(url)
-      .evaluate(() => document.querySelector('body').innerText)
+      .evaluate(() => document.querySelector('h1').innerText)
       .end()
       .then((text) => {
-        expect(text).to.equal('Go!');
+        expect(text).to.equal('Movie Finder');
       })
   );
+
+  // it('should display movie', () =>
+  //   nightmare
+  //     .goto(url + '/#/movie/tt0372784')
+  //     .evaluate(() => document.querySelector('#title').innerText)
+  //     .end()
+  //     .then((text) => {
+  //       expect(text).to.equal('Batman Begins');
+  //     })
+  // );
 
   it('returns the correct status code', () => axios.get(url)
     .then(response => expect(response.status === 200)));
