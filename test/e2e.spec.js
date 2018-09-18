@@ -27,13 +27,12 @@ describe('page components', () => {
   it('should have the correct page title', () =>
     nightmare
       .goto(url)
-      .wait('.movieSearch')
       .evaluate(() => document.querySelector('h1').innerText)
       .end()
       .then((text) => {
         expect(text).to.equal('Movie Finder');
       })
-  ).timeout(65000);
+  ).timeout(30000);
 // Input
   it('should have an input field', () =>
     nightmare
@@ -41,7 +40,7 @@ describe('page components', () => {
       .wait('.movieSearch')
       .evaluate(() => document.querySelector('input').exists)
       .end()
-  ).timeout(60000);
+  ).timeout(6000);
 // Button
   it('should have a search button', () =>
     nightmare
@@ -49,7 +48,7 @@ describe('page components', () => {
       .wait('.movieSearch')
       .evaluate(() => document.querySelector('button').exists)
       .end()
-  ).timeout(60000);
+  ).timeout(6000);
 });
 
 describe('movie searches', () => {
@@ -70,7 +69,7 @@ describe('movie searches', () => {
       .then(title =>
         expect(title).to.equal('Tarka the Otter')
       )
-  ).timeout(60000);
+  ).timeout(6000);
 
   it('movie should have a plot', () =>
     nightmare
@@ -84,7 +83,7 @@ describe('movie searches', () => {
       .then(title =>
         expect(title).to.not.be.null
       )
-  ).timeout(60000);
+  ).timeout(6000);
 
   it('should display more information button', () =>
     nightmare
@@ -95,7 +94,7 @@ describe('movie searches', () => {
       .wait('.row')
       .evaluate(() => document.querySelector('.moreInfo').exists)
       .end()
-  ).timeout(60000);
+  ).timeout(6000);
 
   // it('should display additional movie information', () =>
   //   nightmare
