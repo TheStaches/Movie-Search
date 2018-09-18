@@ -38,7 +38,7 @@ class MovieSearchContainer extends React.Component {
           <input
             type='text'
             className='form-control'
-            name='searchInput'
+            id='searchInput'
             autoFocus
             value={ movieInput }
             onChange={ this.handleSearchInput }
@@ -67,7 +67,7 @@ class MovieSearchContainer extends React.Component {
                     <h2>{ movie.Title }</h2>
                     <p>{ movie.Year }</p>
                     <hr />
-                    <p>{ movie.Plot }</p>
+                    <p className='plot'>{ movie.Plot }</p>
                     <Link
                       to={ `/movie/${movie.imdbID}` }
                       className='btn btn-primary moreInfo'

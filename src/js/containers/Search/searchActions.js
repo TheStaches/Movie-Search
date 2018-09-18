@@ -15,16 +15,15 @@ export function searchMovie(movieInput) {
         let imdbQueries = response.data.Search.map((item) => {
           return axios.get(`http://www.omdbapi.com/?i=${item.imdbID}&apikey=8730e0e`)
         });
-        return axios.all(imdbQueries).then(res => {
+        return axios.all(imdbQueries).then((res) => {
           const boundQuery = response.data.Search.map((item, index) => {
             return {
               ...item,
               ...res[index].data
-            }
-          })
+            };
+          });
           return boundQuery;
         });
-        
       })
-  }
-}
+  };
+};
