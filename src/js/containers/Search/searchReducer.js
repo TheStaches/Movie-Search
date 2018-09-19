@@ -19,22 +19,11 @@ export default function searchReducer(state = defaultState, action) {
       return {
         ...state,
         searchQuery: payload,
+        movieInput: '',
       };
     }
 
     case 'SEARCH_MOVIE_REJECTED': {
-      return state;
-    }
-
-    case 'BUTTON_SEARCH_MOVIE_FULFILLED': {
-      return {
-        ...state,
-        movieInput: '',
-        movieInfo: payload,
-      };
-    }
-
-    case 'BUTTON_SEARCH_MOVIE_REJECTED': {
       return state;
     }
 

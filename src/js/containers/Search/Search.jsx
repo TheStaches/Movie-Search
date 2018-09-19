@@ -41,15 +41,6 @@ class MovieSearchContainer extends React.Component {
             onChange={ this.handleSearchInput }
             onKeyDown={ this.handleSearchMovie }
           />
-          {/* <div className='input-group-append'>
-            <button
-              className='btn btn-outline-dark'
-              id='search'
-              value='button'
-              onClick={ this.handleSearchMovie }
-              onKeyDown={ this.handleSearchMovie }
-            >Go!</button>
-          </div> */}
         </div>
 
         {
@@ -58,19 +49,20 @@ class MovieSearchContainer extends React.Component {
               (
                 <div className='row' key={ index }>
                   <div className='col-3'>
-                    <img className='poster' alt='Poster' src={ movie.Poster ? movie.Poster : 'http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg' } />
+                    <img className='poster' alt='Poster' src={ movie.Poster !== 'N/A' ? movie.Poster : 'http://story-one.com/wp-content/uploads/2016/02/Poster_Not_Available2.jpg' } />
                   </div>
                   <div className='col-9'>
                     <h2 className='movieTitle'>{ movie.Title }</h2>
                     <h3 className='movieYear'>({ movie.Year })</h3>
                     <p className='plot'>{ movie.Plot }</p>
+                    <p>Actors: <span className='secondary'>{ movie.Actors }</span></p>
                     <p>Rating: <span className='secondary'>{ movie.Rated }</span></p>
-                    <p>Runtime: <span className='secondary'>{ movie.Runtime }</span></p>
+                    {/* <p>Runtime: <span className='secondary'>{ movie.Runtime }</span></p> */}
                     
                     <div className='icons'>
                       
                       {/* IMDb Button */}
-                      <a href={ `https://www.imdb.com/title/${movie.imdbID}/` } className='flexIcon'>
+                      <a href={ `https://www.imdb.com/title/${movie.imdbID}/` } target='_blank' className='flexIcon'>
                         <img className='imdb' alt='IMDb' src='https://ia.media-imdb.com/images/M/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@._V1_.png' />
                       </a>
 
