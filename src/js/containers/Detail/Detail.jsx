@@ -7,12 +7,12 @@ class MovieDetailContainer extends React.Component {
 
   render() {
     const { searchQuery } = this.props;
-    const movieArr = searchQuery.filter((item) => 
+    const movieArr = searchQuery.filter(item =>
       item.imdbID === this.props.location.pathname.match(/tt.+/)[0]
     );
 
     return (
-      (movieArr[0]) ?
+      movieArr[0] ?
         <div className='movieDetail'>
           <div className='row'>
             <div className='col-5'>

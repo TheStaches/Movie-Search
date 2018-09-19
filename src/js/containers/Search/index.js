@@ -5,8 +5,7 @@ function mapStoreToProps(store) {
   return {
     movieInput: store.search.movieInput,
     searchQuery: store.search.searchQuery,
-    titleQuery: store.search.titleQuery
-
+    titleQuery: store.search.titleQuery,
   };
 }
 

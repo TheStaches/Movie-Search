@@ -3,7 +3,7 @@ import Detail from './Detail';
 
 function mapStoreToProps(store) {
   return {
-    searchQuery: store.search.searchQuery
+    searchQuery: store.search.searchQuery,
   };
 }
 

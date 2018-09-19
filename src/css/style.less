@@ -1,12 +1,17 @@
+// #212121
+// #4a4a4a
+// #737373
 body {
   background: #ECE9E6;
   background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
+  font-family: 'Open Sans', sans-serif;
+  color: #212121;
 }
 .border {
   border: 2px solid black !important;
 }
 .container {
-  max-width: 60%;
+  max-width: 75%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -15,19 +20,75 @@ body {
     font-size: 60px;
     text-align: center;
 }
+#searchInput {
+  text-align: center;
+  height: 50px;
+  font-size: 30px;
+}
 .movieSearch {
   text-align: center;
 
   .row {
-    position: relative;
     margin: 55px 0;
+    box-shadow: 0 0 30px #737373;
+    position: relative;
 
     .col-3 {
       padding: 25px 0;
     }
-    img {
-      max-height: 250px;
-      margin: 25px 0;
+    .poster {
+      max-width: 100%;
+      margin: -25px 0;
+    }
+    .movieTitle {
+      font-weight: 600;
+    }
+    .movieYear {
+      color: #737373;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .secondary {
+      color: #737373;
+    }
+    .icons {
+      display: flex;
+      justify-content: space-between;
+
+      position: absolute;
+      bottom: 15px;
+
+      .green {
+        background: #68CC3D
+      }
+      .yellow {
+        background: #FECD44;
+        color: black;
+      }
+      .red {
+        background: #FD191F;
+      }
+      .black {
+        background: #3E3E3E;
+      }
+
+    }
+    .flexIcon {
+      margin-right: 15px;
+    }
+    .tomato {
+      max-height: 48px;
+    }
+    .metaCritic {
+      width: 50px;
+      height: 50px;
+      color: white;
+      padding-top: 9px;
+      font-size: 22px;
+      border-radius: 3px;
+    }
+    .imdb {
+      height: 50px;
     }
     h2 {
       text-align: left;
@@ -36,7 +97,7 @@ body {
       text-align: left;
     }
 
-    a {
+    .moreInfo {
       position: absolute;
       right: 0;
       bottom: 0;
