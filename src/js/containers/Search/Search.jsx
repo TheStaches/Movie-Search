@@ -59,7 +59,7 @@ class MovieSearchContainer extends React.Component {
           (searchQuery) ?
             searchQuery.map((movie, index) => {
               return (
-                <div className='row border' key={ index }>
+                <div className='row shadow' key={ index }>
                   <div className='col-3'>
                     <img alt='Poster' src={ movie.Poster } />
                   </div>

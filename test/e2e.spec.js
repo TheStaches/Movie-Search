@@ -27,6 +27,7 @@ describe('page components', () => {
   it('should have the correct page title', () =>
     nightmare
       .goto(url)
+      .wait('.movieSearch')
       .evaluate(() => document.querySelector('h1').innerText)
       .end()
       .then((text) => {
