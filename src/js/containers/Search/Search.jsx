@@ -63,6 +63,15 @@ class MovieSearchContainer extends React.Component {
           <label className='form-check-label' htmlFor='defaultCheck1'>Search for TV Show</label>
         </div>
 
+        <div className='btn-group btn-group-toggle' data-toggle='buttons'>
+          <label className='btn btn-secondary active'>
+            <input type='radio' autoComplete='off' /> Movie
+          </label>
+          <label className='btn btn-secondary'>
+            <input type='radio' autoComplete='off' /> TV Show
+          </label>
+        </div>
+
         {
           (searchQuery) ?
             searchQuery.sort((a, b) => b.Year.match(/\d+/).join('') - a.Year.match(/\d+/).join('')).map((movie, index) => (
@@ -73,11 +82,15 @@ class MovieSearchContainer extends React.Component {
                   </div>
                   <div className='col-9'>
                     <h2 className='movieTitle'>{ movie.Title }</h2>
-                    <h3 className='movieYear'>{ movie.Year.match(/\d+/)[0] }</h3>
+                    <div className='subHeading'>
+                      <h3 className='movieYear'>{ movie.Year }</h3>
+                      <h3 className='movieRating'>{ movie.Rated }</h3>
+                      <h3 className='movieDuration'>
+                        { (movie.Runtime !== 'N/A' && +movie.Runtime.match(/\d+/)[0] >= 60) ? Math.floor((+movie.Runtime.match(/\d+/)[0] / 60)) + 'h ' : <span />}
+                        { (movie.Runtime !== 'N/A' && +movie.Runtime.match(/\d+/)[0] !== 60) ? ((movie.Runtime.match(/\d+/)[0] % 60) + 'm') : <span />}</h3>
+                    </div>
                     <p className='plot'>{ movie.Plot }</p>
-                    <p>Actors: <span className='secondary'>{ movie.Actors }</span></p>
-                    <p>Rating: <span className='secondary'>{ movie.Rated }</span></p>
-                    
+
                     <div className='icons'>
                       {/* IMDb Button */}
                       <a href={ `https://www.imdb.com/title/${movie.imdbID}/` } target='_blank' className='flexIcon'>
@@ -96,6 +109,11 @@ class MovieSearchContainer extends React.Component {
                           <img className='tomato flexIcon' alt='tomato' src='https://www.rottentomatoes.com/assets/pizza-pie/images/icons/global/cf-lg.3c29eff04f2.png' />
                           : <span />
                       }
+
+                      {/* MetaCrtic Score */}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="30"><path d="M57.5,12.5h-8.5l6.8,5-2.6,8.1,6.8-5,6.8,5-2.6-8.1,6.8-5h-8.5l-2.6-8.1z" fill="#ffd83d" stroke="#eac328"/></svg>
+                      <span className='imdbRating'>{ movie.imdbRating }</span>
+                      
                     </div>
                     <Link
                       to={ `/movie/${movie.imdbID}` }

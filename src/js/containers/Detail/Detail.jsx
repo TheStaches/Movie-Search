@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 class MovieDetailContainer extends React.Component {
   constructor(props) {
@@ -11,6 +13,11 @@ class MovieDetailContainer extends React.Component {
     return (
       moreInfo ?
         <div className='movieDetail'>
+        <Link
+          to={ '/' }
+          className='backButton'
+        ><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='feather feather-arrow-left'><line x1='19' y1='12' x2='5' y2='12'></line><polyline points='12 19 5 12 12 5'></polyline></svg>
+        </Link>
           <div className='row'>
             <div className='col-5'>
               <img className='poster' alt='Poster' src={ moreInfo.Poster !== 'N/A' ? moreInfo.Poster : 'http://story-one.com/wp-content/uploads/2016/02/Poster_Not_Available2.jpg' } />
@@ -28,13 +35,15 @@ class MovieDetailContainer extends React.Component {
                   </div>
 
                   {/* body info */}
-                  <p>{moreInfo.Plot}</p>
+                  <div className='detailInfo'>
+                    <p>{moreInfo.Plot}</p>
 
-                  <p>Director: <span className='bodyInfo'>{moreInfo.Director}</span></p>
-                  <p>Writer: <span className='bodyInfo'>{moreInfo.Writer}</span></p>
-                  <p>Actors: <span className='bodyInfo'>{moreInfo.Actors}</span></p>
-                  <p>Language: <span className='bodyInfo'>{moreInfo.Language}</span></p>
-                  <p className='lastBody'>Awards: <span className='bodyInfo'>{moreInfo.Awards}</span></p>
+                    <p>Director: <span className='bodyInfo'>{moreInfo.Director}</span></p>
+                    <p>Writer: <span className='bodyInfo'>{moreInfo.Writer}</span></p>
+                    <p>Actors: <span className='bodyInfo'>{moreInfo.Actors}</span></p>
+                    <p>Language: <span className='bodyInfo'>{moreInfo.Language}</span></p>
+                    <p className='lastBody'>Awards: <span className='bodyInfo'>{moreInfo.Awards}</span></p>
+                  </div>
 
                   <div className='icons'>
                       
@@ -65,7 +74,7 @@ class MovieDetailContainer extends React.Component {
                         : <span />
                     }
 
-                    </div>
+                  </div>
                 </div>
               </div>
             </div>

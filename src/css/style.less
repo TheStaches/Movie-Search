@@ -9,7 +9,7 @@ body {
 }
 .container {
   max-width: 75%;
-  min-width: 750px;
+  min-width: 1120px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -29,6 +29,7 @@ body {
 }
 .movieSearch {
   text-align: center;
+
   .resultFailure {
     margin-top: 70px;
     font-size: 50px;
@@ -41,6 +42,7 @@ body {
 
     .col-3 {
       padding: 25px 0;
+      max-width: 300px !important;
     }
     .col-9 {
       max-width: 70%;
@@ -56,10 +58,24 @@ body {
       font-size: 35px;
       margin-top: 30px;
     }
-    .movieYear {
+    .subHeading {
+      display: flex;
       color: #737373;
-      text-align: left;
-      margin-bottom: 20px;
+      margin-bottom:30px;
+    }
+    .movieYear{
+      margin-right: 15px;
+    }
+    .movieRating{
+      border: 2px solid #737373;
+      font-size: 22px;
+      margin: 4px 15px 4px 4px;
+      min-width: 40px;
+      height: 30px;
+      padding: 0px 5px;
+    }
+    .movieDuraton {
+      font-size: 30px;
     }
     .secondary {
       color: #737373;
@@ -123,13 +139,21 @@ body {
       background-color: #6793db;
     }
   }
-
 }
 
 .movieDetail {
+  margin-top: 50px;
 
+  .backButton {
+    position: absolute;
+    left: 95px;
+    top: 27px;
+    color: black;
+  }
   .poster {
     width: 100%;
+    min-height: 675px;
+    min-width: 455px;
     box-shadow: 0 0 30px rgb(211, 195, 180);
   }
   .title {
@@ -138,12 +162,17 @@ body {
     margin: 15px 0;
   }
   .card {
-    min-height: 571px;
-    min-width: 665px;
+    min-height: 680px;
+    min-width: 680px;
+    height: 100%;
     box-shadow: 0 0 30px rgb(211, 195, 180);
   }
   .card-body {
     padding: 25px;
+  }
+  .detailInfo {
+    max-height: 445px;
+    overflow: auto;
   }
   .spanTags {
     display: flex;
@@ -163,7 +192,7 @@ body {
   .bodyInfo {
     display: block;
     margin-bottom: 15px;
-    color: #737373
+    color: #737373;
   }
   .lastBody {
     margin-bottom: 100px;
@@ -176,7 +205,7 @@ body {
     bottom: 15px;
 
     .green {
-      background: #68CC3D
+      background: #68CC3D;
     }
     .yellow {
       background: #FECD44;
