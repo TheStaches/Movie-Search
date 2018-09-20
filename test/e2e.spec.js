@@ -31,7 +31,7 @@ describe('page components', () => {
       .evaluate(() => document.querySelector('h1').innerText)
       .end()
       .then((text) => {
-        expect(text).to.equal('Movie Finder');
+        expect(text).to.equal('Movie Search');
       })
   ).timeout(30000);
 // Input
@@ -42,19 +42,13 @@ describe('page components', () => {
       .evaluate(() => document.querySelector('input').exists)
       .end()
   ).timeout(6000);
-// Button
-  it('should have a search button', () =>
-    nightmare
-      .goto(url)
-      .wait('.movieSearch')
-      .evaluate(() => document.querySelector('button').exists)
-      .end()
-  ).timeout(6000);
 });
 
 describe('movie searches', () => {
   beforeEach(() => {
-    nightmare = new Nightmare();
+    nightmare = new Nightmare({
+      show: true
+    });
   });
 
 // Search Movie
@@ -63,9 +57,10 @@ describe('movie searches', () => {
       .goto(url)
       .wait('#searchInput')
       .type('#searchInput', 'Tarka the Otter')
-      .click('#search')
-      .wait('.row')
-      .evaluate(() => document.querySelector('#searchInput').value)
+      .wait(500)
+      .type('#searchInput', '\u000d')
+      .wait(2000)
+      .evaluate(() => document.querySelector('.movieTitle').innerText)
       .end()
       .then(title =>
         expect(title).to.equal('Tarka the Otter')
@@ -77,7 +72,8 @@ describe('movie searches', () => {
       .goto(url)
       .wait('#searchInput')
       .type('#searchInput', 'Tarka the Otter')
-      .click('#search')
+      .wait(500)
+      .type('#searchInput', '\u000d')
       .wait('.row')
       .evaluate(() => document.querySelector('.plot').innerText)
       .end()
@@ -91,24 +87,10 @@ describe('movie searches', () => {
       .goto(url)
       .wait('#searchInput')
       .insert('#searchInput', 'Tarka the Otter')
-      .click('#search')
+      .wait(500)
+      .type('#searchInput', '\u000d')
       .wait('.row')
       .evaluate(() => document.querySelector('.moreInfo').exists)
       .end()
   ).timeout(6000);
-
-  // it('should display additional movie information', () =>
-  //   nightmare
-  //     .goto(url)
-  //     .wait('#searchInput')
-  //     .insert('#searchInput', 'Tarka the Otter')
-  //     .click('#search')
-  //     .wait(2500)
-  //     .click('.moreInfo')
-  //     .wait(3000)
-  //     .evaluate(() => document.querySelector('#title').innertext)
-  //     .end()
-  //     .then(title =>
-  //       expect(title).to.equal('Tarka the Otter'))
-  // ).timeout(6000);
 });
