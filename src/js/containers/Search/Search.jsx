@@ -22,7 +22,7 @@ class MovieSearchContainer extends React.Component {
 
   handleSearchMovie(event) {
     const {dispatch, movieInput} = this.props;
-    if (event.key === 'Enter' || event.target.value === 'button') {
+    if ((event.key === 'Enter' || event.target.value === 'button') && event.target.value !== '') {
       dispatch(searchMovie(movieInput));
     }
   }
@@ -57,10 +57,8 @@ class MovieSearchContainer extends React.Component {
                     <p className='plot'>{ movie.Plot }</p>
                     <p>Actors: <span className='secondary'>{ movie.Actors }</span></p>
                     <p>Rating: <span className='secondary'>{ movie.Rated }</span></p>
-                    {/* <p>Runtime: <span className='secondary'>{ movie.Runtime }</span></p> */}
                     
                     <div className='icons'>
-                      
                       {/* IMDb Button */}
                       <a href={ `https://www.imdb.com/title/${movie.imdbID}/` } target='_blank' className='flexIcon'>
                         <img className='imdb' alt='IMDb' src='https://ia.media-imdb.com/images/M/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@._V1_.png' />
@@ -71,15 +69,6 @@ class MovieSearchContainer extends React.Component {
                       { (movie.Metascore <= 60 && movie.Metascore >= 40) && <div className='metaCritic flexIcon yellow'>{ movie.Metascore }</div> }
                       { movie.Metascore < 40 && <div className='metaCritic flexIcon red'>{ movie.Metascore }</div> }
                       { movie.Metascore === 'N/A' && <div className='metaCritic flexIcon black'>{ movie.Metascore }</div> }
-                      
-                      {/* imdb  Rating*/}
-                      {/* <div className='imdb'>
-                        {
-                          (+movie.imdbRating) ?
-                            <img alt='imdb Rating' src={imdbStar} /> :
-                            <span />
-                        }
-                      </div> */}
 
                       {/* Certified Fresh */}
                       {
@@ -87,7 +76,6 @@ class MovieSearchContainer extends React.Component {
                           <img className='tomato flexIcon' alt='tomato' src='https://www.rottentomatoes.com//assets/pizza-pie/images/icons/global/cf-lg.3c29eff04f2.png' />
                           : <span />
                       }
-
                     </div>
                     <Link
                       to={ `/movie/${movie.imdbID}` }
@@ -98,7 +86,7 @@ class MovieSearchContainer extends React.Component {
                   </div>
                 </div>
               )
-            )) : <h1>Sorry No Results Found.</h1>
+            )) : <h1 className='resultFailure'>Sorry No Results Found....</h1>
         }
       </div>
     );

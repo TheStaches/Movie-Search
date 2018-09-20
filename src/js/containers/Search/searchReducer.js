@@ -24,7 +24,10 @@ export default function searchReducer(state = defaultState, action) {
     }
 
     case 'SEARCH_MOVIE_REJECTED': {
-      return state;
+      return {
+        ...state,
+        searchQuery: null,
+      };
     }
 
     default: {
