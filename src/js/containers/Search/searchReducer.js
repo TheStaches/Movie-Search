@@ -1,7 +1,9 @@
 const defaultState = {
   movieInput: '',
   searchQuery: [],
-  titleQuery: {}
+  titleQuery: {},
+  totalResults: '50',
+  searchType: false,
 };
 
 export default function searchReducer(state = defaultState, action) {
@@ -15,10 +17,33 @@ export default function searchReducer(state = defaultState, action) {
       };
     }
 
+    case 'UPDATE_SEARCH_TYPE': {
+      return {
+        ...state,
+        searchType: payload.boolean,
+      };
+    }
+
+    case 'SEARCH_MORE_INFO_FULFILLED': {
+      return {
+        ...state,
+        moreInfo: payload
+      };
+    }
+
+    case 'SEARCH_MORE_INFO_Rejected': {
+      return {
+        ...state,
+        moreInfo: null,
+      };
+    }
+
+
     case 'SEARCH_MOVIE_FULFILLED': {
       return {
         ...state,
-        searchQuery: payload,
+        searchQuery: payload.searchMovies,
+        totalResults: payload.totalResults,
         movieInput: '',
       };
     }

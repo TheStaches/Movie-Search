@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import {
   updateSearchInput,
   searchMovie,
+  searchType,
+  moreInfo
 } from './searchActions';
 
 class MovieSearchContainer extends React.Component {
@@ -13,6 +15,8 @@ class MovieSearchContainer extends React.Component {
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleSearchMovie = this.handleSearchMovie.bind(this);
+    this.handleSearchType = this.handleSearchType.bind(this);
+    this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
 
   handleSearchInput(event) {
@@ -21,26 +25,42 @@ class MovieSearchContainer extends React.Component {
   }
 
   handleSearchMovie(event) {
-    const {dispatch, movieInput} = this.props;
+    const {dispatch, movieInput, searchType} = this.props;
     if ((event.key === 'Enter' || event.target.value === 'button') && event.target.value !== '') {
-      dispatch(searchMovie(movieInput));
+      dispatch(searchMovie(movieInput, searchType));
     }
+  }
+
+  handleSearchType() {
+    const { dispatch } = this.props;
+    dispatch(searchType(!this.props.searchType));
+  }
+
+  handleMoreInfo(event) {
+    const { dispatch, searchType } = this.props;
+    dispatch(moreInfo(event.target.name, searchType));
   }
 
   render() {
     const { movieInput, searchQuery } = this.props;
     return (
       <div className='movieSearch'>
+        <h1 className='pageTitle'>Movie Search</h1>
         <div className='input-group'>
           <input
             type='text'
             className='form-control'
             id='searchInput'
-            autoFocus
+            placeholder='Search for a movie.'
             value={ movieInput }
             onChange={ this.handleSearchInput }
             onKeyDown={ this.handleSearchMovie }
           />
+        </div>
+
+        <div className='form-check'>
+          <input className='form-check-input' type='checkbox' value='' id='defaultCheck1' onClick={ this.handleSearchType } />
+          <label className='form-check-label' htmlFor='defaultCheck1'>Search for TV Show</label>
         </div>
 
         {
@@ -53,7 +73,7 @@ class MovieSearchContainer extends React.Component {
                   </div>
                   <div className='col-9'>
                     <h2 className='movieTitle'>{ movie.Title }</h2>
-                    <h3 className='movieYear'>({ movie.Year })</h3>
+                    <h3 className='movieYear'>{ movie.Year.match(/\d+/)[0] }</h3>
                     <p className='plot'>{ movie.Plot }</p>
                     <p>Actors: <span className='secondary'>{ movie.Actors }</span></p>
                     <p>Rating: <span className='secondary'>{ movie.Rated }</span></p>
@@ -73,15 +93,16 @@ class MovieSearchContainer extends React.Component {
                       {/* Certified Fresh */}
                       {
                         (movie.Ratings[1] && +movie.Ratings[1].Value.slice(0, 2) > 75) ?
-                          <img className='tomato flexIcon' alt='tomato' src='https://www.rottentomatoes.com//assets/pizza-pie/images/icons/global/cf-lg.3c29eff04f2.png' />
+                          <img className='tomato flexIcon' alt='tomato' src='https://www.rottentomatoes.com/assets/pizza-pie/images/icons/global/cf-lg.3c29eff04f2.png' />
                           : <span />
                       }
                     </div>
                     <Link
                       to={ `/movie/${movie.imdbID}` }
+                      name={ movie.imdbID }
+                      onClick={ this.handleMoreInfo }
                       className='btn btn-outline-primary moreInfo'
-                    >
-                    More Information
+                    >More Information
                     </Link>
                   </div>
                 </div>
