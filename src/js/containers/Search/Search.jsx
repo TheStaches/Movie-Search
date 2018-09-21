@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactStars from 'react-stars';
 
 
 import {
@@ -25,15 +26,17 @@ class MovieSearchContainer extends React.Component {
   }
 
   handleSearchMovie(event) {
-    const {dispatch, movieInput, searchType} = this.props;
-    if ((event.key === 'Enter' || event.target.value === 'button') && event.target.value !== '') {
-      dispatch(searchMovie(movieInput, searchType));
+    const {dispatch, movieInput, movieTv} = this.props;
+    const { value, name } = this.props;
+    if ((event.key === 'Enter' || value === 'button') && value !== '') {
+      dispatch(searchMovie(movieInput, movieTv));
     }
   }
 
-  handleSearchType() {
-    const { dispatch } = this.props;
-    dispatch(searchType(!this.props.searchType));
+  handleSearchType(event) {
+    const { dispatch, activeButton } = this.props;
+    const { name } = event.target;
+    dispatch(searchType(name, activeButton));
   }
 
   handleMoreInfo(event) {
@@ -42,7 +45,8 @@ class MovieSearchContainer extends React.Component {
   }
 
   render() {
-    const { movieInput, searchQuery } = this.props;
+    const { movieInput, searchQuery, activeButton } = this.props;
+    console.log('activeButton', activeButton);
     return (
       <div className='movieSearch'>
         <h1 className='pageTitle'>Movie Search</h1>
@@ -58,20 +62,16 @@ class MovieSearchContainer extends React.Component {
           />
         </div>
 
-        <div className='form-check'>
-          <input className='form-check-input' type='checkbox' value='' id='defaultCheck1' onClick={ this.handleSearchType } />
-          <label className='form-check-label' htmlFor='defaultCheck1'>Search for TV Show</label>
-        </div>
-
-        <div className='btn-group btn-group-toggle' data-toggle='buttons'>
-          <label className='btn btn-secondary active'>
-            <input type='radio' autoComplete='off' /> Movie
+        {/* <div className='btn-group btn-group-toggle' data-toggle='buttons'>
+          <label className='btn btn-outline-primary'>
+            <input type='radio' name='movie' { activeButton ? 'active' : '' } onClick={ this.handleSearchType }/> Movie
           </label>
-          <label className='btn btn-secondary'>
-            <input type='radio' autoComplete='off' /> TV Show
+          <label className='btn btn-outline-success'>
+            <input type='radio' name='series' { activeButton ? '' : 'active' } onClick={ this.handleSearchType }/> TV Show
           </label>
-        </div>
+        </div> */}
 
+        {/* Movie Cards */}
         {
           (searchQuery) ?
             searchQuery.sort((a, b) => b.Year.match(/\d+/).join('') - a.Year.match(/\d+/).join('')).map((movie, index) => (
@@ -87,8 +87,21 @@ class MovieSearchContainer extends React.Component {
                       <h3 className='movieRating'>{ movie.Rated }</h3>
                       <h3 className='movieDuration'>
                         { (movie.Runtime !== 'N/A' && +movie.Runtime.match(/\d+/)[0] >= 60) ? Math.floor((+movie.Runtime.match(/\d+/)[0] / 60)) + 'h ' : <span />}
-                        { (movie.Runtime !== 'N/A' && +movie.Runtime.match(/\d+/)[0] !== 60) ? ((movie.Runtime.match(/\d+/)[0] % 60) + 'm') : <span />}</h3>
+                        { (movie.Runtime !== 'N/A' && +movie.Runtime.match(/\d+/)[0] !== 60) ? ((movie.Runtime.match(/\d+/)[0] % 60) + 'm') : <span />}
+                      </h3>
+
+                      {/* MetaCrtic Score */}
+                      <ReactStars
+                        className='imdbStars'
+                        count={ 5 }
+                        color1={ '#ECE9E6' }
+                        value={ +movie.imdbRating / 2 }
+                        size={ 24 }
+                        edit={ false }
+                        color2={ '#ffd700' }
+                      />
                     </div>
+
                     <p className='plot'>{ movie.Plot }</p>
 
                     <div className='icons'>
@@ -110,10 +123,6 @@ class MovieSearchContainer extends React.Component {
                           : <span />
                       }
 
-                      {/* MetaCrtic Score */}
-                      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="30"><path d="M57.5,12.5h-8.5l6.8,5-2.6,8.1,6.8-5,6.8,5-2.6-8.1,6.8-5h-8.5l-2.6-8.1z" fill="#ffd83d" stroke="#eac328"/></svg>
-                      <span className='imdbRating'>{ movie.imdbRating }</span>
-                      
                     </div>
                     <Link
                       to={ `/movie/${movie.imdbID}` }

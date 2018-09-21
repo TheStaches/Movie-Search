@@ -3,7 +3,8 @@ const defaultState = {
   searchQuery: [],
   titleQuery: {},
   totalResults: '50',
-  searchType: false,
+  movieTv: 'movie',
+  activeButton: true,
 };
 
 export default function searchReducer(state = defaultState, action) {
@@ -20,7 +21,8 @@ export default function searchReducer(state = defaultState, action) {
     case 'UPDATE_SEARCH_TYPE': {
       return {
         ...state,
-        searchType: payload.boolean,
+        movieTv: payload.movieTv,
+        activeButton: !payload.activeButton,
       };
     }
 

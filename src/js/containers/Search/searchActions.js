@@ -7,25 +7,25 @@ export function updateSearchInput(movieInput) {
   };
 }
 
-export function searchType(boolean) {
+export function searchType(movieTv, activeButton) {
   return {
     type: 'UPDATE_SEARCH_TYPE',
-    payload: { boolean }
+    payload: { movieTv, activeButton }
   };
 }
 
-export function moreInfo(movieId, type) {
+export function moreInfo(movieId, movieTv) {
   return {
     type: 'SEARCH_MORE_INFO',
-    payload: axios.get(`https://www.omdbapi.com/?i=${movieId}&type=${type ? 'series' : 'movie'}&plot=full&apikey=8730e0e`)
+    payload: axios.get(`https://www.omdbapi.com/?i=${movieId}&type=${movieTv}&plot=full&apikey=8730e0e`)
       .then(response => response.data)
   };
 }
 
-export function searchMovie(movieInput, type) {
+export function searchMovie(movieInput, movieTv) {
   return {
     type: 'SEARCH_MOVIE',
-    payload: axios.get(`https://www.omdbapi.com/?s=${movieInput}&type=${type ? 'series' : 'movie'}&apikey=8730e0e`)
+    payload: axios.get(`https://www.omdbapi.com/?s=${movieInput}&type=${movieTv}&apikey=8730e0e`)
       .then((searchRes) => {
         const imdbQueries = searchRes.data.Search.map((item) => {
           return axios.get(`https://www.omdbapi.com/?i=${item.imdbID}&apikey=8730e0e`);

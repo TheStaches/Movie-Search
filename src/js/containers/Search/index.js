@@ -6,7 +6,8 @@ function mapStoreToProps(store) {
     movieInput: store.search.movieInput,
     searchQuery: store.search.searchQuery,
     totalResults: store.search.totalResults,
-    searchType: store.search.searchType,
+    movieTv: store.search.movieTv,
+    activeButton: store.search.activeButton,
   };
 }
 

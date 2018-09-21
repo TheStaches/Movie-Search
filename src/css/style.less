@@ -29,6 +29,7 @@ body {
 }
 .movieSearch {
   text-align: center;
+  -webkit-font-smoothing: antialiased;
 
   .resultFailure {
     margin-top: 70px;
@@ -76,6 +77,9 @@ body {
     }
     .movieDuraton {
       font-size: 30px;
+    }
+    .imdbStars {
+      margin-left: 20px;
     }
     .secondary {
       color: #737373;
@@ -142,7 +146,8 @@ body {
 }
 
 .movieDetail {
-  margin-top: 50px;
+  margin-top: 30px;
+  -webkit-font-smoothing: antialiased;
 
   .backButton {
     position: absolute;
@@ -150,11 +155,15 @@ body {
     top: 27px;
     color: black;
   }
-  .poster {
-    width: 100%;
-    min-height: 675px;
-    min-width: 455px;
-    box-shadow: 0 0 30px rgb(211, 195, 180);
+  .col-5 {
+    position: relative;
+    
+    .poster {
+      width: 100%;
+      min-height: 675px;
+      min-width: 455px;
+      box-shadow: 0 0 30px rgb(211, 195, 180);
+    }
   }
   .title {
     font-weight: 600;
@@ -162,10 +171,18 @@ body {
     margin: 15px 0;
   }
   .card {
+    position: relative;
     min-height: 680px;
     min-width: 680px;
     height: 100%;
     box-shadow: 0 0 30px rgb(211, 195, 180);
+
+    .tomato {
+      position: absolute;
+      height: 100px;
+      top: 15px;
+      right: 5px;
+    }
   }
   .card-body {
     padding: 25px;
@@ -173,6 +190,10 @@ body {
   .detailInfo {
     max-height: 445px;
     overflow: auto;
+
+    p {
+      font-weight: 500;
+    }
   }
   .spanTags {
     display: flex;
@@ -221,9 +242,6 @@ body {
   }
   .flexIcon {
     margin-right: 15px;
-  }
-  .tomato {
-    max-height: 48px;
   }
   .metaCritic {
     width: 50px;
