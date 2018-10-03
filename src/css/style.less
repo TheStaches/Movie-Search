@@ -22,10 +22,14 @@ body {
   text-align: center;
   height: 50px;
   font-size: 30px;
+  border: none;
 }
-#searchInput:focus::-webkit-input-placeholder 
-{
+#searchInput:focus::-webkit-input-placeholder {
     color: transparent;
+}
+#searchInput:focus {
+    box-shadow: none;
+    border: none;
 }
 .movieSearch {
   text-align: center;
@@ -169,6 +173,7 @@ body {
     font-weight: 600;
     font-size: 45px;
     margin: 15px 0;
+    max-width: 82%;
   }
   .card {
     position: relative;

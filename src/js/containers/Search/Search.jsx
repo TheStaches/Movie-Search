@@ -62,15 +62,6 @@ class MovieSearchContainer extends React.Component {
           />
         </div>
 
-        {/* <div className='btn-group btn-group-toggle' data-toggle='buttons'>
-          <label className='btn btn-outline-primary'>
-            <input type='radio' name='movie' { activeButton ? 'active' : '' } onClick={ this.handleSearchType }/> Movie
-          </label>
-          <label className='btn btn-outline-success'>
-            <input type='radio' name='series' { activeButton ? '' : 'active' } onClick={ this.handleSearchType }/> TV Show
-          </label>
-        </div> */}
-
         {/* Movie Cards */}
         {
           (searchQuery) ?
