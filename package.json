@@ -11,6 +11,7 @@
     "test": "npm run build && mocha test/setup.js test/*.spec.js --exit"
   },
   "dependencies": {
+    "animate.css": "^3.7.0",
     "autoprefixer-loader": "^3.2.0",
     "axios": "^0.16.1",
     "babel": "^6.3.26",

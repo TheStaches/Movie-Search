@@ -5,6 +5,8 @@ const defaultState = {
   totalResults: '50',
   movieTv: 'movie',
   activeButton: true,
+  animateInput: '',
+  animateMovie: '',
 };
 
 export default function searchReducer(state = defaultState, action) {
@@ -46,7 +48,16 @@ export default function searchReducer(state = defaultState, action) {
         ...state,
         searchQuery: payload.searchMovies,
         totalResults: payload.totalResults,
+        animateInput: 'animateInput',
+        animateMovie: 'animated fadeIn slow',
         movieInput: '',
+      };
+    }
+    
+    case 'SEARCH_MOVIE_PENDING': {
+      return {
+        ...state,
+        animateMovie: '',
       };
     }
 

@@ -8,6 +8,8 @@ function mapStoreToProps(store) {
     totalResults: store.search.totalResults,
     movieTv: store.search.movieTv,
     activeButton: store.search.activeButton,
+    animateInput: store.search.animateInput,
+    animateMovie: store.search.animateMovie,
   };
 }
 

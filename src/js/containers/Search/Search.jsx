@@ -45,17 +45,16 @@ class MovieSearchContainer extends React.Component {
   }
 
   render() {
-    const { movieInput, searchQuery, activeButton } = this.props;
-    console.log('activeButton', activeButton);
+    const { movieInput, searchQuery, animateInput, animateMovie } = this.props;
     return (
       <div className='movieSearch'>
-        <h1 className='pageTitle'>Movie Search</h1>
         <div className='input-group'>
           <input
             type='text'
-            className='form-control'
+            className={ `form-control ${animateInput}` }
             id='searchInput'
             placeholder='Search for a movie.'
+            autoComplete='off'
             value={ movieInput }
             onChange={ this.handleSearchInput }
             onKeyDown={ this.handleSearchMovie }
@@ -67,7 +66,7 @@ class MovieSearchContainer extends React.Component {
           (searchQuery) ?
             searchQuery.sort((a, b) => b.Year.match(/\d+/).join('') - a.Year.match(/\d+/).join('')).map((movie, index) => (
               (
-                <div className='row' key={ index }>
+                <div className={ `row ${animateMovie}` } key={ index }>
                   <div className='col-3'>
                     <img className='poster' alt='Poster' src={ movie.Poster !== 'N/A' ? movie.Poster : 'http://story-one.com/wp-content/uploads/2016/02/Poster_Not_Available2.jpg' } />
                   </div>
