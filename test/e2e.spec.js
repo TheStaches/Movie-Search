@@ -24,17 +24,6 @@ describe('page components', () => {
   it('returns the correct status code', () => axios.get(url)
     .then(response => expect(response.status === 200)));
 
-  it('should have the correct page title', () =>
-    nightmare
-      .goto(url)
-      .wait('.movieSearch')
-      .evaluate(() => document.querySelector('h1').innerText)
-      .end()
-      .then((text) => {
-        expect(text).to.equal('Movie Search');
-      })
-  ).timeout(30000);
-// Input
   it('should have an input field', () =>
     nightmare
       .goto(url)
@@ -46,9 +35,7 @@ describe('page components', () => {
 
 describe('movie searches', () => {
   beforeEach(() => {
-    nightmare = new Nightmare({
-      show: true
-    });
+    nightmare = new Nightmare();
   });
 
 // Search Movie
