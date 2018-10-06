@@ -1,39 +1,9 @@
 # Movie Search 
 
-Movie Search utilizes the omdbapi allowing users to get information for their favorite movies.
+The Movie Search application allows users to search their favorite movies utilizing the omdbapi. 
+
+## Goal
+The goal of this project was to learn and implement React Router and Redux in a react application.
 
 
-![alt text](moviefinder.gif)
-
-## Installation
-
-### Requirements
-* Linux
-* Python 3.3 and up
-
-`$ pip install foobar`
-
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
-
-## Development
-```
-$ virtualenv foobar
-$ . foobar/bin/activate
-$ pip install -e .
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+![moviefinder.gif](moviefinder.gif)
