@@ -1,9 +1,11 @@
-# Movie Search  ![CI status](https://img.shields.io/badge/build-passing-
+# Movie Search 
 
-The Movie Search application allows users to search their favorite movies utilizing the omdbapi. 
+Allows users to get information on their favorite movies. 
 
-## Goal
-The goal of this project was to learn and implement React Router and Redux in a React application.
+## Learning Objectives
+* Develop a React web app using Redux and React Router
+* Implement page animations
+* Create continuous integration testing with Mocha and Nightmare
 
 
 ![moviefinder.gif](moviefinder.gif)
