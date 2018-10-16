@@ -1,6 +1,6 @@
 # Movie Search 
 
-Allows users to get information on their favorite movies. 
+Allow users to search for movies by name through the OMDB API service. 
 
 ## Learning Objectives
 * Develop a React web app using Redux and React Router
