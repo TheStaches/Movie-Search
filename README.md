@@ -7,5 +7,6 @@ Allow users to search for movies by name through the OMDB API service.
 * Implement page animations
 * Create continuous integration testing with Mocha and Nightmare
 
+https://ericdodds-movie-search.herokuapp.com/
 
 ![moviefinder.gif](moviefinder.gif)
